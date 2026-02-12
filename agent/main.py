@@ -7,13 +7,22 @@ import os
 
 MAX_RETRIES = 3
 
+
 def extract_log_text(zip_file):
+    extract_path = "logs"
     with zipfile.ZipFile(zip_file, 'r') as zip_ref:
-        zip_ref.extractall("logs")
+        zip_ref.extractall(extract_path)
+    
     log_text = ""
-    for fname in os.listdir("logs"):
-        with open(os.path.join("logs", fname), "r") as f:
-            log_text += f.read()
+    # Walk through all files recursively
+    for root, dirs, files in os.walk(extract_path):
+        for fname in files:
+            file_path = os.path.join(root, fname)
+            try:
+                with open(file_path, "r", encoding="utf-8", errors="ignore") as f:
+                    log_text += f.read()
+            except Exception as e:
+                print(f"Could not read {file_path}: {e}")
     return log_text
 
 def self_heal_pipeline():
