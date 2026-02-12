@@ -1,0 +1,12 @@
+# HTTP requests to GitHub API
+requests
+
+# For parsing YAML if needed for pipeline configs
+PyYAML
+
+# Testing framework
+pytest
+pytest-rerunfailures
+
+# OpenAI GPT API for agent reasoning
+openai
