@@ -1,7 +1,8 @@
 import requests
+import os
 
-GITHUB_TOKEN = "YOUR_GITHUB_TOKEN"
-REPO = "username/self_healing_agentic_ai"
+GITHUB_TOKEN = os.getenv("GITHUB_TOKEN")
+REPO = "Shinta-C-Zachariah/self-Healing-ci-cd-pipeline-agent"
 
 def get_latest_workflow_run():
     url = f"https://api.github.com/repos/{REPO}/actions/runs?per_page=1"
